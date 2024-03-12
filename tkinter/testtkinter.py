@@ -2,7 +2,7 @@ import tkinter as tk
 import tkinter.messagebox as tkmsg
 
 root = tk.Tk()
-root.geometry('500x300')
+root.geometry('800x600')
 root.resizable(0,0)
 root.title("Descarga videos de YouTube con Sandreke")
 root.configure(bg='#AACDE2')
@@ -10,8 +10,8 @@ root.configure(bg='#AACDE2')
 tk.Label(root,text = 'Descarga videos de YouTube\n con Sandreke', font ='arial 20 bold', bg='#AACDE2').pack()
 
 link = tk.StringVar()
-tk.Label(root, text = 'Pega el link aquí:', font = 'arial 15', bg='#AACDE2').place(x= 160 , y = 90)
-link_enter = tk.Entry(root, width = 70,textvariable = link).place(x = 32, y = 120)
+tk.Label(root, text = 'Pega el link aquí:', font = 'arial 15', bg='#AACDE2').place(x = 320, y = 280) ##place(x= 160 , y = 90)
+link_enter = tk.Entry(root, width = 70,textvariable = link).place(x = 160, y = 340)
 
 def Downloader():     
 #     url =YouTube(str(link.get()))
@@ -20,8 +20,8 @@ def Downloader():
 #     video.download()
     # tk.Message(root, text = 'desea descargar?', font = 'arieal 15 bold', bg='green').place(x=180, y = 240)
     ask = tkmsg.askquestion(title="Si o No", message="Quiere descargar el archivo?")
-    tk.Label(root, text = f'{ask}', font = 'arial 15 bold', bg='#AACDE2', fg='#B57199').place(x= 180 , y = 240)  
+    tk.Label(root, text = f'{ask}', font = 'arial 15 bold', bg='#AACDE2', fg='#B57199').place(x= 360 , y = 480)  
     if (ask == "no"): root.destroy()
     
-tk.Button(root,text = 'DESCARGAR', font = 'arial 15 bold', bg = '#B57199', padx = 2, command = Downloader).place(x=180 ,y = 180)
+tk.Button(root,text = 'DESCARGAR', font = 'arial 15 bold', bg = '#B57199', padx = 2, command = Downloader).place(x=320 ,y = 160)
 root.mainloop()
