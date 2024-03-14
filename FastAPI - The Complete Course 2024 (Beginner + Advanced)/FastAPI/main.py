@@ -1,4 +1,4 @@
-from fastapi import FastAPI 
+from fastapi import Body, FastAPI 
 
 
 
@@ -19,10 +19,10 @@ BOOKS = [
 #     file.writelines(libro + "\n")
 # file.close()
 
-BOOKS = []
-file = open("BOOKS.txt","r+")
-BOOKS = file.readlines()
-print(BOOKS)
+# BOOKS = []
+# file = open("BOOKS.txt","r+")
+# BOOKS = file.readlines()
+# print(BOOKS)
 @app.get("/")
 async def firstApi():
     return{"message":"Hello Agustin!!!"}
@@ -48,3 +48,31 @@ async def bookByCategory_query(category: str):
         if(book.get('category').casefold() == category.casefold()):
             bookToReturn.append(book)
     return bookToReturn
+
+
+@app.post("/books/create_book")
+async def addBook(newBook = Body()):
+    print(newBook)
+    BOOKS.append(newBook)
+    return newBook
+
+@app.put("/books/update_book")
+async def updateBook(updatedBook = Body()):
+    for i in range( len(BOOKS)):
+        if BOOKS[i].get('title').casefold() == updatedBook.get('title').casefold():
+            BOOKS[i] = updatedBook
+            return BOOKS[i]
+        
+
+
+@app.delete("/book/delete_book/{title}")
+async def deleteBook(bookTitle: str):
+    for i in range(len(BOOKS)):
+        if BOOKS[i].get('title').casefold() == bookTitle.casefold():
+            BOOKS.pop(i)
+
+
+
+
+
+
