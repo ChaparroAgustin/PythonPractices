@@ -115,5 +115,4 @@ async def booksBypublish(date: int):
     for book in BOOKS:
         if book.publishDate == date:
             booksToReturn.append(book)
-
     return booksToReturn
