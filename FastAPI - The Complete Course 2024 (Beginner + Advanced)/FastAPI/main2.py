@@ -96,22 +96,26 @@ async def booksByRating(bookRating: int = Query(gt=0 ,lt=6)):
 
 @app.put("/books/update_book")
 async def updateBook(book: BookRequest):
+    bookChange = False
     for i in range(len(BOOKS)):
         if BOOKS[i].id == book.id:
             BOOKS[i] = book
+            bookChange = True
             return book
-    else:
-        return {"book not found"}
+    if not bookChange:
+        raise HTTPException(status_code=404 , detail="book not found")
 
 
 @app.delete("/books/{id}")
 async def deleteBook(bookId: int = Path(gt=0)):
+    bookChange = False
     for i in range(len(BOOKS)):
         if BOOKS[i].id == bookId:
             BOOKS.pop(i)
+            bookChange = True
             return BOOKS[i]
-
-    return {"Book not found"}
+    if not bookChange:
+        raise HTTPException(status_code=404, detail="Book not found")
 
 
 @app.get("/books/{date}")

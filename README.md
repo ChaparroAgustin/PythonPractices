@@ -6,3 +6,9 @@ pip freeze > requirements.txt
 
 # To create the virtual enviroment 
 py -m venv venv 
+
+
+
+# to execute venv/scripts/activate on powershell first run this script
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
